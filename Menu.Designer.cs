@@ -42,11 +42,14 @@
             this.tempLabel = new System.Windows.Forms.Label();
             this.Weather = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.unitLabel = new System.Windows.Forms.Label();
             this.trendChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cityTrendLabel = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.applyChangesButton = new System.Windows.Forms.Button();
+            this.F = new System.Windows.Forms.RadioButton();
+            this.C = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.changeRRBox = new System.Windows.Forms.TextBox();
             this.changeCityBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,6 +59,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CurrentTemp = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage1.SuspendLayout();
             this.Weather.SuspendLayout();
@@ -175,6 +181,7 @@
             this.tabPage2.BackColor = System.Drawing.SystemColors.Desktop;
             this.tabPage2.BackgroundImage = global::WeatherApp.Properties.Resources.sky;
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage2.Controls.Add(this.unitLabel);
             this.tabPage2.Controls.Add(this.trendChart);
             this.tabPage2.Controls.Add(this.cityTrendLabel);
             this.tabPage2.ForeColor = System.Drawing.Color.Black;
@@ -185,16 +192,23 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = " Trend ";
             // 
+            // unitLabel
+            // 
+            this.unitLabel.AutoSize = true;
+            this.unitLabel.BackColor = System.Drawing.Color.Transparent;
+            this.unitLabel.Font = new System.Drawing.Font("Myanmar Text", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unitLabel.Location = new System.Drawing.Point(712, 121);
+            this.unitLabel.Name = "unitLabel";
+            this.unitLabel.Size = new System.Drawing.Size(37, 27);
+            this.unitLabel.TabIndex = 5;
+            this.unitLabel.Text = "unit";
+            // 
             // trendChart
             // 
             this.trendChart.BackColor = System.Drawing.Color.Transparent;
-            this.trendChart.BackSecondaryColor = System.Drawing.Color.Transparent;
             this.trendChart.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.BorderColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.trendChart.ChartAreas.Add(chartArea1);
-            this.trendChart.ImeMode = System.Windows.Forms.ImeMode.Disable;
             legend1.Name = "Legend1";
             this.trendChart.Legends.Add(legend1);
             this.trendChart.Location = new System.Drawing.Point(25, 82);
@@ -202,9 +216,9 @@
             this.trendChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
-            series1.Name = "Average °C";
+            series1.Name = "Average";
             this.trendChart.Series.Add(series1);
-            this.trendChart.Size = new System.Drawing.Size(798, 277);
+            this.trendChart.Size = new System.Drawing.Size(785, 253);
             this.trendChart.TabIndex = 4;
             this.trendChart.Text = "trendChart";
             // 
@@ -225,8 +239,10 @@
             this.tabPage3.BackColor = System.Drawing.SystemColors.Desktop;
             this.tabPage3.BackgroundImage = global::WeatherApp.Properties.Resources.sky;
             this.tabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage3.Controls.Add(this.applyChangesButton);
+            this.tabPage3.Controls.Add(this.F);
+            this.tabPage3.Controls.Add(this.C);
             this.tabPage3.Controls.Add(this.label3);
-            this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.changeRRBox);
             this.tabPage3.Controls.Add(this.changeCityBox);
             this.tabPage3.Controls.Add(this.label2);
@@ -238,6 +254,40 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = " Options ";
             // 
+            // applyChangesButton
+            // 
+            this.applyChangesButton.Location = new System.Drawing.Point(446, 277);
+            this.applyChangesButton.Name = "applyChangesButton";
+            this.applyChangesButton.Size = new System.Drawing.Size(218, 46);
+            this.applyChangesButton.TabIndex = 8;
+            this.applyChangesButton.Text = "Apply";
+            this.applyChangesButton.UseVisualStyleBackColor = true;
+            this.applyChangesButton.Click += new System.EventHandler(this.ApplyChangesButton_Click);
+            // 
+            // F
+            // 
+            this.F.AutoSize = true;
+            this.F.BackColor = System.Drawing.Color.Transparent;
+            this.F.Location = new System.Drawing.Point(243, 40);
+            this.F.Name = "F";
+            this.F.Size = new System.Drawing.Size(52, 38);
+            this.F.TabIndex = 7;
+            this.F.Text = "°F";
+            this.F.UseVisualStyleBackColor = false;
+            // 
+            // C
+            // 
+            this.C.AutoSize = true;
+            this.C.BackColor = System.Drawing.Color.Transparent;
+            this.C.Checked = true;
+            this.C.Location = new System.Drawing.Point(156, 40);
+            this.C.Name = "C";
+            this.C.Size = new System.Drawing.Size(55, 38);
+            this.C.TabIndex = 6;
+            this.C.TabStop = true;
+            this.C.Text = "°C";
+            this.C.UseVisualStyleBackColor = false;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -248,17 +298,6 @@
             this.label3.Size = new System.Drawing.Size(163, 27);
             this.label3.TabIndex = 5;
             this.label3.Text = "(in number of minutes)";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(446, 294);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(218, 52);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Apply";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // changeRRBox
             // 
@@ -311,24 +350,48 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CurrentTemp,
             this.aboutToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.optionsToolStripMenuItem,
+            this.openToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(120, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 152);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.menuItem2_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.menuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.optionsToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItem_Click);
+            // 
+            // CurrentTemp
+            // 
+            this.CurrentTemp.Enabled = false;
+            this.CurrentTemp.Name = "CurrentTemp";
+            this.CurrentTemp.Size = new System.Drawing.Size(210, 24);
+            this.CurrentTemp.Text = "CurrentTemp";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // Menu
             // 
@@ -379,15 +442,21 @@
         private System.Windows.Forms.TextBox changeCityBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.NotifyIcon WeatherApp;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.DataVisualization.Charting.Chart trendChart;
         private System.Windows.Forms.Label cityTrendLabel;
+        private System.Windows.Forms.RadioButton F;
+        private System.Windows.Forms.RadioButton C;
+        private System.Windows.Forms.Button applyChangesButton;
+        private System.Windows.Forms.DataVisualization.Charting.Chart trendChart;
+        private System.Windows.Forms.Label unitLabel;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CurrentTemp;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
     }
 }
 

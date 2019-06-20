@@ -17,11 +17,13 @@ namespace WeatherApp
         string city;
         string temp;
         int refreshRate;
+        bool unit;
         public Menu()
         {
             city = "Munich";
             temp = "10";
             refreshRate = 600000;
+            unit = true;
             InitializeComponent();
             CreateContextMenu();
             this.FormClosing += this.Form1_FormClosing;
@@ -60,6 +62,7 @@ namespace WeatherApp
             tempLabel.Text = temp + " °C";
             locLabel.Text = city;
             changeCityBox.Text = city;
+            unitLabel.Text = "in °C";
             changeRRBox.Text = ((refreshRate / 60000).ToString());
             getWeather(city);
         }
@@ -87,7 +90,15 @@ namespace WeatherApp
             WeatherInfo.root outPut = result;
             locLabel.Text = string.Format("{0}, {1}", outPut.name, outPut.sys.country);
             cityTrendLabel.Text = locLabel.Text;
-            tempLabel.Text = string.Format("{0} °C", Math.Round(outPut.main.temp, MidpointRounding.AwayFromZero));
+            if (unit)
+            {
+                tempLabel.Text = string.Format("{0} °C", Math.Round(outPut.main.temp, MidpointRounding.AwayFromZero));
+            }
+            else
+            {
+                tempLabel.Text = string.Format("{0} °F", Math.Round((outPut.main.temp * 5/9 + 32), MidpointRounding.AwayFromZero));
+            }
+            CurrentTemp.Text = locLabel.Text + " - " + tempLabel.Text;
             updateLabel.Text = "Updated: " + DateTime.Now.ToString();
             descLabel.Text = string.Format("{0}", outPut.weatherList[0].main);
             humidLabel.Text = string.Format("Humidity: {0}%", outPut.main.humidity);
@@ -99,7 +110,7 @@ namespace WeatherApp
             string query = "INSERT INTO WeatherData (Date, City, Temp) VALUES ('" + DateTime.Now.ToString("yyyy-MM-dd") + "', '" + city + "', '" + temp + "');";
             DBInsert dbcon = new DBInsert(query);
         }
-        private void Button1_Click(object sender, EventArgs e)
+        private void ApplyChangesButton_Click(object sender, EventArgs e)
         {
             change();
         }
@@ -114,6 +125,16 @@ namespace WeatherApp
             catch (InvalidCastException i)
             {
                 throw new InvalidCastException("You need to fill in a number of minutes." + i.Message);
+            }
+            if (C.Checked)
+            {
+                unit = true;
+                unitLabel.Text = " in °C";
+            }
+            else
+            {
+                unit = false;
+                unitLabel.Text = " in °F";
             }
             Weather.SelectedIndex = 0;
             getWeather(city);
@@ -138,7 +159,7 @@ namespace WeatherApp
         }
         void setTrend()
         {
-            trendChart.Series["Average °C"].Points.Clear();
+            trendChart.Series["Average"].Points.Clear();
             double[] avgTempArr = new double[5];
             string[] dateStringArr = new string[5];
             for (int i = 0; i < 5; i++)
@@ -150,10 +171,31 @@ namespace WeatherApp
                 avgTempArr[i] = select.getResult();
                 dateStringArr[i] = dateString;
             }
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
-                trendChart.Series["Average °C"].Points.AddXY(dateStringArr[i], avgTempArr[i]);
+                double avgTemp;
+                if (unit)
+                {
+                    avgTemp = avgTempArr[i];
+                }
+                else
+                {
+                    avgTemp = avgTempArr[i] * 5 / 9 + 32;
+                }
+                trendChart.Series["Average"].Points.AddXY(dateStringArr[i], avgTemp);
             }
+        }
+
+        private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WeatherApp_MouseDoubleClick(null, null);
+            Weather.SelectedIndex = 2;
+        }
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WeatherApp_MouseDoubleClick(null, null);
+            Weather.SelectedIndex = 0;
         }
     }
 }
