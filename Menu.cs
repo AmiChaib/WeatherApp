@@ -197,5 +197,10 @@ namespace WeatherApp
             WeatherApp_MouseDoubleClick(null, null);
             Weather.SelectedIndex = 0;
         }
+
+        private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getWeather(city);
+        }
     }
 }

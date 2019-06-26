@@ -57,11 +57,12 @@
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.WeatherApp = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CurrentTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CurrentTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage1.SuspendLayout();
             this.Weather.SuspendLayout();
@@ -354,9 +355,17 @@
             this.aboutToolStripMenuItem,
             this.exitToolStripMenuItem,
             this.optionsToolStripMenuItem,
-            this.openToolStripMenuItem});
+            this.openToolStripMenuItem,
+            this.refreshToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 152);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 176);
+            // 
+            // CurrentTemp
+            // 
+            this.CurrentTemp.Enabled = false;
+            this.CurrentTemp.Name = "CurrentTemp";
+            this.CurrentTemp.Size = new System.Drawing.Size(210, 24);
+            this.CurrentTemp.Text = "CurrentTemp";
             // 
             // aboutToolStripMenuItem
             // 
@@ -379,19 +388,19 @@
             this.optionsToolStripMenuItem.Text = "Options";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItem_Click);
             // 
-            // CurrentTemp
-            // 
-            this.CurrentTemp.Enabled = false;
-            this.CurrentTemp.Name = "CurrentTemp";
-            this.CurrentTemp.Size = new System.Drawing.Size(210, 24);
-            this.CurrentTemp.Text = "CurrentTemp";
-            // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
             // 
             // Menu
             // 
@@ -457,6 +466,7 @@
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CurrentTemp;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
     }
 }
 
