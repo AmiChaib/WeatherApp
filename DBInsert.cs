@@ -18,12 +18,8 @@ namespace WeatherApp
         {
             try
             {
-                string connectionString =
-                @"Data Source = (localdb)\MSSQLLocalDB;" +
-                @"AttachDbFilename =" +
-                @"C:\Users\amich\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\Weather.mdf;" +
-                @"Integrated Security = True;" +
-                @"Connect Timeout = 30;";
+                //Replace with connection string
+                string connectionString = "";
 
                 SqlConnection conn = new SqlConnection(connectionString);
                 SqlCommand command = new SqlCommand(query, conn);
